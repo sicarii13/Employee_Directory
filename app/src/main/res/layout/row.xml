@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:gravity="end|bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Employee ID"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Employee Name"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+
+
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Employee Phone Number"
+            android:ems="10"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibDelete"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="5dp"
+                android:background="@null"
+                android:clickable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_delete_black_24dp"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+            <ImageButton
+                android:id="@+id/ibEdit"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="5dp"
+                android:background="@null"
+                android:clickable="true"
+                android:scaleType="fitXY"
+                android:src="@android:drawable/ic_menu_edit"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/ibCopy"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="5dp"
+                android:background="@null"
+                android:clickable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_content_copy_black_24dp"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/ibShare"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="5dp"
+                android:background="@null"
+                android:clickable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_share_black_24dp"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
