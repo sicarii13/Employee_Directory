@@ -31,13 +31,14 @@ class MainActivity : AppCompatActivity() {
 
         val addNew: Button = findViewById(R.id.btnNew)
 
-        var rvEmps: RecyclerView = findViewById(R.id.rvEmps)
+        val rvEmps: RecyclerView = findViewById(R.id.rvEmps)
         rvEmps.layoutManager = LinearLayoutManager(this)
 
         empList = arrayListOf()
 
         db = FirebaseFirestore.getInstance()
 
+        //Read all Documents from EmpDir Collection
         db.collection("EmpDir")
             .get()
             .addOnSuccessListener {
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     inner class EmpAdapter (private val empList: ArrayList<Employee>) : RecyclerView.Adapter<EmpAdapter.ViewHolder>() {
+        //Adapter controls interaction with UI
 
         inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
             val id: TextView = itemView.findViewById(R.id.tvID)
@@ -84,6 +86,7 @@ class MainActivity : AppCompatActivity() {
             holder.name.text = empList[position].empName
             holder.phone.text = empList[position].empPhone
 
+            //Copy list item to device clipboard
             holder.ibCopy.setOnClickListener {
                 val str = holder.id.text.toString() + "\n" + holder.name.text.toString() + "\n" + holder.phone.text.toString()
                 val clip = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
@@ -91,6 +94,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Copied...", Toast.LENGTH_SHORT).show()
             }
 
+            //Returns Document ID from EmpID search to facilitate Document deletion
             holder.ibDelete.setOnClickListener {
                 var docID: String = ""
                 db.collection("EmpDir")
@@ -108,6 +112,7 @@ class MainActivity : AppCompatActivity() {
                     }
             }
 
+            //Pass list item data to Activity for editing
             holder.ibEdit.setOnClickListener {
                 val intent = Intent(this@MainActivity, AddEmployee::class.java)
                 intent.putExtra("EmpID", holder.id.text.toString())
@@ -116,6 +121,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
+            //Share list item using device share options
             holder.ibShare.setOnClickListener{
                 val str = holder.id.text.toString() + "\n" + holder.name.text.toString() + "\n" + holder.phone.text.toString()
 

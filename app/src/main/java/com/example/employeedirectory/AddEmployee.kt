@@ -23,6 +23,7 @@ class AddEmployee : AppCompatActivity() {
 
         val addEmp: Button = findViewById(R.id.btnAdd)
 
+        //Read values from Main Activity and set id flag
         try{
             val extras = intent.extras
 
@@ -31,6 +32,8 @@ class AddEmployee : AppCompatActivity() {
             }
 
             Toast.makeText(this, id, Toast.LENGTH_SHORT).show()
+
+            //Reconfigure Add Employee layout for Update action
             if(id.toInt()!=0){
                 addEmp.text = "Update Employee"
                 eID.text = extras?.getString("EmpID")
@@ -41,6 +44,8 @@ class AddEmployee : AppCompatActivity() {
 
         addEmp.setOnClickListener{
             val db = Firebase.firestore
+
+            //Add Employee document process
             if(id.toInt()==0) {
                 if (eID.text.isEmpty() || eName.text.isEmpty() || ePhone.text.isEmpty()) {
                     Toast.makeText(this, "Please complete all fields!", Toast.LENGTH_SHORT).show()
@@ -55,6 +60,7 @@ class AddEmployee : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                 }
             }else{
+                //Update Employee document process
                 var docID: String = ""
                 db.collection("EmpDir")
                     .whereEqualTo("empId", eID.text.toString())
